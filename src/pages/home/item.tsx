@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Speakeasy from 'speakeasy';
 
 import * as Types from '../../types';
-import { remainingTime } from '../../helpers/totp';
+// import { remainingTime } from '../../helpers/totp';
 
 
 interface ItemProps {
@@ -24,7 +24,11 @@ class OTPItem extends Component<ItemProps> {
   updateInterval : any = false;
 
   componentDidMount() {
-    setTimeout(() => this.update(), remainingTime());
+    if (this.updateInterval === false) {
+      this.updateInterval = setInterval(() => {
+        this.update();
+      }, 1000);
+    }
   }
 
   componentWillUnmount() {
@@ -33,14 +37,7 @@ class OTPItem extends Component<ItemProps> {
   }
 
   update() {
-    console.log('UPDATE');
     this.forceUpdate();
-
-    if (this.updateInterval === false) {
-      this.updateInterval = setInterval(() => {
-        this.update();
-      }, 30 * 1000);
-    }
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Settings } from 'react-feather';
+import { Settings, ExternalLink } from 'react-feather';
+import { ipcRenderer } from 'electron';
 
 import Button from './Button';
 
@@ -19,6 +20,9 @@ const Layout = ({ children } : LayoutProps) => {
           </Link>
         </h1>
         <div className="text-right">
+          <Button onClick={() => ipcRenderer.send('openFull')}>
+            <ExternalLink />
+          </Button>
           <Link to="/settings">
             <Button>
               <Settings />
