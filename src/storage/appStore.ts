@@ -11,13 +11,13 @@ const defaultState : appStoreInterface = {
     {
       name: "Twitter",
       description: 'John Doe',
-      icon: '/icons/twitter.svg',
+      icon: '/icons/color-twitter.svg',
       token: 'HHPCZGQ3ZZLTRICKIPL36MO53ACFFJDJ',
     },
     {
       name: "Facebook",
       description: 'John Doe',
-      icon: '/icons/facebook.svg',
+      icon: '/icons/color-facebook.svg',
       token: 'JDTZJ44CKUEF35VDBWO7BUPSUYE7QI6X',
     },
   ],

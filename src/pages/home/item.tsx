@@ -47,7 +47,7 @@ class OTPItem extends Component<ItemProps> {
     const { item } = this.props;
 
     return (
-      <button className="bg-white p-3 mb-6 rounded-md shadow-lg w-full" onClick={() => copyAndClose(item.token)}>
+      <div className="bg-white p-3 mb-6 rounded-md shadow-lg w-full cursor-pointer btn" onClick={() => copyAndClose(item.token)}>
         <div className="flex">
           {/* Icon */}
           <img 
@@ -75,7 +75,7 @@ class OTPItem extends Component<ItemProps> {
             {currentCode(item.token)}
           </div>
         </div>
-      </button>
+      </div>
     );
   }
 }

@@ -14,7 +14,7 @@ class NewService extends Component {
   state = {
     name: '',
     description: '',
-    icon: '/icons/facebook.png',
+    icon: '/icons/0_unknown.svg',
     token: '',
     withError: [],
     iconMode: 'buildin',
@@ -152,9 +152,11 @@ class NewService extends Component {
               hasError={this.hasError('icon')}
             />
           )}
-          <Button fullWidth onClick={() => this.switchIconMode()}>
-            {iconModeSwitch}
-          </Button>
+          <div className="mt-1">
+            <Button fullWidth onClick={() => this.switchIconMode()}>
+              {iconModeSwitch}
+            </Button>
+          </div>
         </div>
 
         <div className="mt-6">
@@ -170,4 +172,5 @@ class NewService extends Component {
   }
 }
 
+// This file is a .jsx instead of .tsx as TypeScript has some problems with the "withRouter" function
 export default withRouter(view(NewService));

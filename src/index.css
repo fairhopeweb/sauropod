@@ -17,15 +17,15 @@ code {
     monospace;
 }
 
-button {
+button, .btn {
   transition: all 0.25s;
 }
 
-button:hover {
+button:hover, .btn:hover {
   box-shadow: 0 3px 6pt 1pt rgba(42, 48, 75, 0.2);
 }
 
-button:focus {
+button:focus, .btn:focus {
   outline: none !important;
   box-shadow: 0 1px 3pt 1pt rgba(42, 48, 75, 0.4);
 }

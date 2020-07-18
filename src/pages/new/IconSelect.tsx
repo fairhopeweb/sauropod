@@ -55,7 +55,7 @@ class IconSelect extends Component<IconSelectProps> {
                     height: 50,
                   }}
                   alt={icon}
-                  className={`rounded-md shadow-lg rounded-md box-border ${selected === icon ? 'border-solid border-indigo-300 border-4' : ''}`}
+                  className={`rounded-md shadow-lg rounded-md box-border cursor-pointer ${selected === icon ? 'border-solid border-indigo-300 border-4' : ''}`}
                 />
               </div>
             ))}
