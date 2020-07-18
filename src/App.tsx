@@ -8,6 +8,7 @@ import ReactTooltip from "react-tooltip";
 import { view } from '@risingstack/react-easy-state';
 
 import settingsStore from './storage/settingsStore';
+import setupPersistence from './storage/persistence';
 
 import HomeComponent from './pages/home';
 import NewService from './pages/new';
@@ -18,6 +19,8 @@ const routes = [
   { path: '/settings', Component: Settings },
   { path: '/', Component: HomeComponent },
 ]
+
+setupPersistence();
 
 class App extends Component {
   render() {
