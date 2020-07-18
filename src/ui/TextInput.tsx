@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface TextInputProps {
-  label: string,
+  label?: string,
   placeholder: string,
   onChange: Function,
   hasError?: boolean,
@@ -10,7 +10,7 @@ interface TextInputProps {
 const TextInput = ({ label, placeholder, onChange, hasError } : TextInputProps) => {
   return (
     <>
-      <label className="text-gray-700">{ label }</label>
+      {label && <label className="text-gray-700">{ label }</label>}
       <input 
         type="text"
         placeholder={placeholder}
