@@ -21,7 +21,16 @@ const Layout = ({ children } : LayoutProps) => {
       {/* Header */}
       <div className="grid grid-cols-2 py-4 px-8">
         <h1 className="flex items-center text-2xl font-bold">
-          <Link to="/">
+          <Link to="/" className="flex items-center">
+            <img 
+              src='/icons/0_unknown.svg'
+              style={{
+                width: 45,
+                height: 45,
+              }}
+              alt="Sauropod Icon"
+              className="rounded-md shadow-lg mr-5 rounded-md inline"
+            />
             Sauropod
           </Link>
         </h1>
