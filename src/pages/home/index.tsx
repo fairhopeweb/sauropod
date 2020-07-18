@@ -8,6 +8,7 @@ import TextInput from '../../ui/TextInput';
 import OTPItem from './item';
 import AddOTPItem from './addItem';
 import RemainingInfo from './remainingInfo';
+import * as Types from '../../types';
 
 import appStore from '../../storage/appStore';
 
@@ -58,10 +59,12 @@ class HomeComponent extends Component {
               onChange={(query : string) => {
                 this.setState({ query });
               }}
+              value={query}
             />
           </div>
-          {showIcons.map((item, index) => (
-            <OTPItem key={index} item={item} />
+          {showIcons.map((item : Types.App, index) => (
+            // @ts-ignore
+            <OTPItem key={index} item={item} index={index} />
           ))}
           <AddOTPItem />
         </Layout>

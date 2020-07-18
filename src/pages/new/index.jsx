@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { view } from '@risingstack/react-easy-state';
-import { Plus } from 'react-feather';
+import { Plus, Edit } from 'react-feather';
 import { withRouter } from 'react-router-dom';
 
 import Button from '../../ui/Button';
@@ -18,7 +18,41 @@ class NewService extends Component {
     token: '',
     withError: [],
     iconMode: 'buildin',
+    editMode: false,
   };
+
+  componentDidMount() {
+    this.useEditValues();
+  }
+
+  componentDidUpdate(props) {
+    if (props !== this.props) {
+      this.useEditValues();
+    }
+  }
+
+  useEditValues() {
+    const { match } = this.props;
+    if (match && match.path === '/edit/:id') {
+      // We are editing a service
+      const service = appStore.apps[match.params.id];
+
+      if (!service) {
+        alert('The service you are trying to edit doesn\'t exist');
+        return;
+      }
+
+      this.setState({
+        ...service,
+        editMode: match.params.id,
+      });
+    } else {
+      // We are creating a new service
+      this.setState({
+        editMode: false,
+      });
+    }
+  }
 
   updateValue(name, value) {
     this.setState({
@@ -77,18 +111,28 @@ class NewService extends Component {
       description,
       icon,
       token,
+      editMode,
     } = this.state;
 
     if (this.checkErrors()) {
       return;
     }
 
-    appStore.apps.push({
-      name,
-      description,
-      icon,
-      token,
-    });
+    if (editMode === false) {
+      appStore.apps.push({
+        name,
+        description,
+        icon,
+        token,
+      });
+    } else {
+      appStore.apps[editMode] = {
+        name,
+        description,
+        icon,
+        token,
+      };
+    }
     this.props.history.push('/');
   }
 
@@ -111,6 +155,13 @@ class NewService extends Component {
       iconModeSwitch = 'Use build-in icon instead';
     }
 
+    const {
+      name,
+      description,
+      token,
+      editMode,
+    } = this.state;
+
     return (
       <Layout>
         <div>
@@ -119,6 +170,7 @@ class NewService extends Component {
             placeholder="Google"
             onChange={(v) => this.updateValue('name', v)}
             hasError={this.hasError('name')}
+            value={name}
           />
         </div>
         <div className="mt-6">
@@ -127,6 +179,7 @@ class NewService extends Component {
             placeholder="John Doe"
             onChange={(v) => this.updateValue('description', v)}
             hasError={this.hasError('description')}
+            value={description}
           />
         </div>
         <div className="mt-6">
@@ -135,6 +188,7 @@ class NewService extends Component {
             placeholder="HHPCZGQ3ZZLTRICKIPL36MO53ACFFJDJ"
             onChange={(v) => this.updateValue('token', v)}
             hasError={this.hasError('token')}
+            value={token}
           />
         </div>
         <div className="mt-6">
@@ -162,8 +216,21 @@ class NewService extends Component {
         <div className="mt-6">
           <Button fullWidth onClick={() => this.saveItem()}>
             <div className="flex items-center">
-              <Plus style={{ display: 'inline' }} />
-              Add service
+              {editMode === false ? (
+                <>
+                  <Plus style={{ display: 'inline' }} />
+                  <span className="ml-3">
+                    Add service
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Edit style={{ display: 'inline' }} />
+                  <span className="ml-3">
+                    Edit service
+                  </span>
+                </>
+              )}
             </div>
           </Button>
         </div>

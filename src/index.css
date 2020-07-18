@@ -55,3 +55,10 @@ button:focus, .btn:focus {
 .border-sauropod {
   border-color: #2A304B;
 }
+
+/* TODO: Is there a way to reliably find out if we are in the menubar or not? */
+@media screen and (min-width: 500px) {
+  .only-in-menubar {
+    display: none;
+  }
+}

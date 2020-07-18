@@ -5,9 +5,10 @@ interface TextInputProps {
   placeholder: string,
   onChange: Function,
   hasError?: boolean,
+  value: string,
 }
 
-const TextInput = ({ label, placeholder, onChange, hasError } : TextInputProps) => {
+const TextInput = ({ label, placeholder, onChange, hasError, value } : TextInputProps) => {
   return (
     <>
       {label && <label className="text-gray-700">{ label }</label>}
@@ -23,6 +24,7 @@ const TextInput = ({ label, placeholder, onChange, hasError } : TextInputProps) 
           border-2
           ${hasError ? 'border-red-500 animate__animated animate__shakeX' : ''}`}
         onChange={(e) => onChange(e.target.value)}
+        value={value}
       />
     </>
   );

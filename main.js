@@ -10,10 +10,14 @@ const menubarConfig = {
   browserWindow: {
     width: 400,
     height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    },
   },
   icon: join(__dirname, 'icons', 'MenuBarIcon.png'),
   tooltip: 'Sauropod',
   index: webUrl,
+  showDockIcon: process.NODE_ENV !== 'production',
 }
 
 const mb = menubar(menubarConfig);

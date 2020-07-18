@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Speakeasy from 'speakeasy';
+import { withRouter } from 'react-router-dom';
 
 import * as Types from '../../types';
 // import { remainingTime } from '../../helpers/totp';
@@ -7,6 +8,8 @@ import * as Types from '../../types';
 
 interface ItemProps {
   item: Types.App,
+  history: Array<string>,
+  index: number,
 }
 
 const currentCode = (token : string) => {
@@ -58,7 +61,7 @@ class OTPItem extends Component<ItemProps> {
           />
           
           {/* Information */}
-          <div className="flex flex-col" data-tip="Click the name to edit the item">
+          <div className="flex flex-col" data-tip="Click the name to edit the item" onClick={() => this.props.history.push(`/edit/${this.props.index}`)}>
             <div>
               {item.name}
             </div>
@@ -77,4 +80,5 @@ class OTPItem extends Component<ItemProps> {
   }
 }
 
-export default OTPItem;
+// @ts-ignore
+export default withRouter(OTPItem);

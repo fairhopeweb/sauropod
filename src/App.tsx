@@ -16,6 +16,7 @@ import Settings from './pages/settings';
 
 const routes = [
   { path: '/new', Component: NewService },
+  { path: '/edit/:id', Component: NewService },
   { path: '/settings', Component: Settings },
   { path: '/', Component: HomeComponent },
 ]
