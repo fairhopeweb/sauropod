@@ -4,12 +4,16 @@ const { join } = require('path');
 console.log('Building build-in icons list...');
 
 const files = fs.readdirSync(join(__dirname, '../', 'public', 'icons'));
+const filePaths = [];
 
 // Prefix icon path with '/icons/'
-files.forEach((icon, index) => {
-  files[index] = '/icons/' + icon;
+files.forEach((icon) => {
+  // Ignore non-image files
+  if (/\.(png|svg|jpg|jpeg)$/.test(icon)) {
+    filePaths.push('/icons/' + icon);
+  }
 });
 
-fs.writeJsonSync(join(__dirname, '../', 'src', 'data', 'icons.json'), files);
+fs.writeJsonSync(join(__dirname, '../', 'src', 'data', 'icons.json'), filePaths);
 
-console.log(`Indexed ${files.length} icons`);
+console.log(`Indexed ${filePaths.length} icons`);

@@ -21,45 +21,47 @@ class IconSelect extends Component<IconSelectProps> {
     super(props);
     
     this.state.icons = getIcons();
-    console.log(this.state.icons);
   }
 
   render() {
     const {selected, onChange} = this.props;
 
     return (
-      <div 
-        className={`
-          w-full
-          rounded-md
-          p-3
+      <>
+        <label className="text-gray-700">Service Icon</label>
+        <div 
+          className={`
+            w-full
+            rounded-md
 
-          border-solid
-          border-gray-500
-          border-2
+            border-solid
+            border-gray-500
+            border-2
 
-          bg-white
-
-          grid
-          grid-cols-3
-          gap-4
-        `}
-      >
-        {this.state.icons.map(icon => (
-          <div className="flex justify-center" onClick={() => onChange(icon)}>
-            <img
-              src={icon}
-              style={{
-                width: 65,
-                height: 65,
-              }}
-              alt={icon}
-              key={icon}
-              className={`rounded-md shadow-lg rounded-md box-border ${selected === icon ? 'border-solid border-red-800 border-4' : ''}`}
-            />
+            bg-white
+          `}
+          style={{
+            maxHeight: 300,
+            overflow: 'scroll',
+          }}
+        >
+          <div className="p-5 py-6 grid grid-cols-4 gap-4">
+            {this.state.icons.map(icon => (
+              <div className="flex justify-center" onClick={() => onChange(icon)} key={icon}>
+                <img
+                  src={icon}
+                  style={{
+                    width: 50,
+                    height: 50,
+                  }}
+                  alt={icon}
+                  className={`rounded-md shadow-lg rounded-md box-border ${selected === icon ? 'border-solid border-indigo-300 border-4' : ''}`}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      </>
     );
   }
 }

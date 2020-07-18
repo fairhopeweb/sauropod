@@ -17,6 +17,7 @@ class NewService extends Component {
     icon: '/icons/facebook.png',
     token: '',
     withError: [],
+    iconMode: 'buildin',
   };
 
   updateValue(name, value) {
@@ -91,7 +92,25 @@ class NewService extends Component {
     this.props.history.push('/');
   }
 
+  switchIconMode() {
+    const { iconMode } = this.state;
+    let newIconMode = 'url';
+    if (iconMode === 'url') {
+      newIconMode = 'buildin';
+    }
+
+    this.setState({
+      iconMode: newIconMode,
+    });
+  }
+
   render() {
+    const { iconMode } = this.state;
+    let iconModeSwitch = 'Use icon from URL instead';
+    if (iconMode === 'url') {
+      iconModeSwitch = 'Use build-in icon instead';
+    }
+
     return (
       <Layout>
         <div>
@@ -119,11 +138,23 @@ class NewService extends Component {
           />
         </div>
         <div className="mt-6">
-          <label className="text-gray-700">Service Icon</label>
-          <IconSelect
-            onChange={(v) => this.updateValue('icon', v)}
-            selected={this.state.icon}
-          />
+          {iconMode === 'buildin' && (
+            <IconSelect
+              onChange={(v) => this.updateValue('icon', v)}
+              selected={this.state.icon}
+            />
+          )}
+          {iconMode === 'url' && (
+            <TextInput
+              label="Service Icon"
+              placeholder="https://example.com/icon.png"
+              onChange={(v) => this.updateValue('icon', v)}
+              hasError={this.hasError('icon')}
+            />
+          )}
+          <Button fullWidth onClick={() => this.switchIconMode()}>
+            {iconModeSwitch}
+          </Button>
         </div>
 
         <div className="mt-6">
