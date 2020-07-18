@@ -1,0 +1,58 @@
+{
+  "name": "sauropod",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@risingstack/react-easy-state": "^6.3.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/react-transition-group": "^4.4.0",
+    "@types/speakeasy": "^2.0.5",
+    "animate.css": "^4.1.0",
+    "electron": "^9.1.0",
+    "fs-extra": "^9.0.1",
+    "menubar": "^9.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-feather": "^2.0.8",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-tooltip": "^4.2.7",
+    "react-transition-group": "^4.4.1",
+    "speakeasy": "^2.0.0",
+    "tailwindcss": "^1.4.6",
+    "typeface-roboto": "^0.0.75",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "develop:react": "react-scripts start",
+    "develop:electron": "concurrently --kill-others \"yarn develop:react\" \"electron main.js\"",
+    "build:react": "react-scripts build",
+    "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
+    "buildIconList": "node scripts/buildIconList.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
