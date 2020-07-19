@@ -6,7 +6,6 @@ import {
 import { CSSTransition } from 'react-transition-group';
 import ReactTooltip from "react-tooltip";
 import { view } from '@risingstack/react-easy-state';
-import activeWin from 'active-win';
 
 import settingsStore from './storage/settingsStore';
 import setupPersistence from './storage/persistence';
@@ -25,14 +24,6 @@ const routes = [
 setupPersistence();
 
 class App extends Component {
-  constructor(props : any) {
-    super(props);
-
-    activeWin().then((info) => {
-      console.log('WinInfo:', info);
-    });
-  }
-
   render() {
     return (
       <div className="App">

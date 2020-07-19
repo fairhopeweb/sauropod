@@ -3,5 +3,8 @@ module.exports = {
       configure: {
           target: 'electron-renderer'
       }
+  },
+  typescript: {
+    isolatedModules: false,
   }
 };

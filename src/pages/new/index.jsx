@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { view } from '@risingstack/react-easy-state';
-import { Plus, Edit, XSquare } from 'react-feather';
+import { Plus, Edit, XSquare, Monitor } from 'react-feather';
 import { withRouter } from 'react-router-dom';
 
 import Button from '../../ui/Button';
@@ -11,6 +11,8 @@ import IconSelect from './IconSelect';
 import appStore from '../../storage/appStore';
 
 import notify from '../../helpers/noty';
+import { takeScreenshot } from '../../helpers/screenshot';
+import scanQr from '../../helpers/qr';
 
 class NewService extends Component {
   state = {
@@ -163,6 +165,12 @@ class NewService extends Component {
     });
   }
 
+  async useQr() {
+    const screen = await takeScreenshot();
+    const data = scanQr(screen);
+    console.log(data);
+  }
+
   render() {
     const { iconMode } = this.state;
     let iconModeSwitch = 'Use icon from URL instead';
@@ -179,6 +187,14 @@ class NewService extends Component {
 
     return (
       <Layout>
+        {editMode === false && (
+          <Button fullWidth onClick={() => this.useQr()}>
+            <div className="flex items-center">
+              <Monitor style={{ display: 'inline' }} />
+              Use QR Code on my screen
+            </div>
+          </Button>
+        )}
         <div>
           <TextInput
             label="Name"
