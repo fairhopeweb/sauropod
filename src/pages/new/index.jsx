@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { view } from '@risingstack/react-easy-state';
-import { Plus, Edit, XSquare, Monitor } from 'react-feather';
+import { Plus, Edit, XSquare, Monitor, Check } from 'react-feather';
 import { withRouter } from 'react-router-dom';
 
 import Button from '../../ui/Button';
@@ -11,6 +11,7 @@ import IconSelect from './IconSelect';
 import appStore from '../../storage/appStore';
 
 import notify from '../../helpers/noty';
+import { findIconFor } from '../../helpers/icons';
 import { takeScreenshot } from '../../helpers/screenshot';
 import scanQr from '../../helpers/qr';
 
@@ -23,6 +24,7 @@ class NewService extends Component {
     withError: [],
     iconMode: 'buildin',
     editMode: false,
+    hasUsedQr: false,
   };
 
   componentDidMount() {
@@ -168,7 +170,47 @@ class NewService extends Component {
   async useQr() {
     const screen = await takeScreenshot();
     const data = scanQr(screen);
-    console.log(data);
+
+    if (!data) {
+      notify('Could not find any QR Codes');
+      return;
+    }
+
+    let url;
+    try {
+      url = new URL(data);
+    } catch(e) {
+      notify('QR Code is not a valid URL');
+      return;
+    }
+
+    if (url.protocol !== 'otpauth:') {
+      notify('QR Code is not a optauth: URL');
+      return;
+    }
+
+    const info = decodeURIComponent(url.pathname.replace('//totp/', ''));
+    const token = url.searchParams.get('secret');
+
+    // Find the issuer
+    let issuer = url.searchParams.get('issuer');
+    if (!issuer && info.includes(':')) {
+      const company = /.*(?=:)/.exec(info);
+      if (company && company[0]) {
+        issuer = company;
+      }
+    }
+
+    // Remove issuer from name
+    const name = info.includes(':') ? /(?<=:).*/.exec(info)[0] : info;
+
+    this.setState({
+      name: issuer,
+      token,
+      description: name,
+      icon: findIconFor(issuer),
+      hasUsedQr: true,
+    });
   }
 
   render() {
@@ -183,6 +225,7 @@ class NewService extends Component {
       description,
       token,
       editMode,
+      hasUsedQr
     } = this.state;
 
     return (
@@ -190,12 +233,22 @@ class NewService extends Component {
         {editMode === false && (
           <Button fullWidth onClick={() => this.useQr()}>
             <div className="flex items-center">
-              <Monitor style={{ display: 'inline' }} />
-              Use QR Code on my screen
+              {hasUsedQr ? (
+                <div className="animate__animated animate__fadeInUp">
+                  <Check />
+                </div>
+              ) : (
+                <>
+                  <Monitor style={{ display: 'inline' }} />
+                  <span className="ml-3">
+                    Use QR Code on my screen
+                  </span>
+                </>
+              )}
             </div>
           </Button>
         )}
-        <div>
+        <div className="mt-6">
           <TextInput
             label="Name"
             placeholder="Google"

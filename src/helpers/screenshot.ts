@@ -77,16 +77,15 @@ export const takeScreenshot = async () => {
   if (isMac) {
     // This will allow us to request screen capture permissions
     if (!hasPromptedForPermission()) {
-      hasScreenCapturePermission();
+      const hasPermission = hasScreenCapturePermission();
+      if (!hasPermission) {
+        notify('Please make sure to give Sauropod permissions to capture your screen, otherwise we cannot scan QR Codes on your screen.');
+      }
     }
   }
 
   const source = await askForScreen();
-
-  console.log('Got source', source);
-
   const video = await getVideo(source);
-  console.log('Got video', video);
 
   const canvas = document.createElement('canvas');
   canvas.width = video.videoWidth;
@@ -100,11 +99,8 @@ export const takeScreenshot = async () => {
   // Draw video on canvas
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  const image = ctx.createImageData(canvas.width, canvas.height);
-
-  const test = document.createElement('img');
-  test.src = canvas.toDataURL();
-  document.body.appendChild(test);
+  // Convert to ImageData
+  const image = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
   video.remove();
 

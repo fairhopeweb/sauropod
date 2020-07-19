@@ -11,7 +11,7 @@ import Button from '../../ui/Button';
 import Setting from './setting';
 import appStore from '../../storage/appStore';
 
-import { getIcons } from '../../helpers/icons';
+import { findIconFor } from '../../helpers/icons';
 import notify from '../../helpers/noty';
 
 interface AppExport {
@@ -28,15 +28,6 @@ interface AppExport {
 };
 
 interface ExportFile extends Array<AppExport> {}
-
-const findIconFor = (name : string) => {
-  const n = name.toLowerCase();
-
-  if (getIcons().includes(`/icons/color-${n}.svg`)) {
-    return `/icons/color-${n}.svg`;
-  } 
-  return `/icons/0_unknown.svg`;
-}
 
 class SettingsPage extends Component {
   fileInput : HTMLInputElement | null = null;
