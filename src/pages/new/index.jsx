@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { view } from '@risingstack/react-easy-state';
-import { Plus, Edit } from 'react-feather';
+import { Plus, Edit, XSquare } from 'react-feather';
 import { withRouter } from 'react-router-dom';
 
 import Button from '../../ui/Button';
@@ -9,6 +9,8 @@ import TextInput from '../../ui/TextInput';
 import IconSelect from './IconSelect';
 
 import appStore from '../../storage/appStore';
+
+import notify from '../../helpers/noty';
 
 class NewService extends Component {
   state = {
@@ -136,6 +138,19 @@ class NewService extends Component {
     this.props.history.push('/');
   }
 
+  removeService() {
+    // eslint-disable-next-line no-restricted-globals
+    const confirmation = confirm('Are you sure you want to delete this service? This action is permanent and can\'t be reversed.');
+
+    if (confirmation) {
+      const { editMode } = this.state;
+      appStore.apps.splice(editMode, 1);
+
+      notify('Successfully removed the service');
+      this.props.history.push('/');
+    }
+  }
+
   switchIconMode() {
     const { iconMode } = this.state;
     let newIconMode = 'url';
@@ -234,6 +249,18 @@ class NewService extends Component {
             </div>
           </Button>
         </div>
+        {editMode !== false && (
+          <div className="mt-6">
+            <Button fullWidth onClick={() => this.removeService()} className="bg-red-500">
+              <div className="flex items-center text-white">
+                <XSquare style={{ display: 'inline' }} />
+                <span className="ml-3">
+                  Delete service
+                </span>
+              </div>
+            </Button>
+          </div>
+        )}
       </Layout>
     );
   }

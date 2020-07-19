@@ -2,13 +2,14 @@ const { menubar } = require('menubar');
 const { join } = require('path');
 const electron = require('electron');
 
-const webUrl = process.NODE_ENV === 'production' ? `file://${__dirname}/index.html` : 'http://localhost:3000';
+const isDev = process.NODE_ENV !== 'production';
+const webUrl = !isDev ? `file://${__dirname}/index.html` : 'http://localhost:3000';
 
 // Setup Menubar
 const menubarConfig = {
   dir: join(__dirname, 'src'),
   browserWindow: {
-    width: 400,
+    width: isDev ? 700 : 400,
     height: 600,
     webPreferences: {
       nodeIntegration: true,
@@ -24,6 +25,12 @@ const mb = menubar(menubarConfig);
 
 mb.on('ready', () => {
   console.log('App is ready');
+});
+
+mb.on('after-create-window', () => {
+  if (isDev) {
+    mb.window.openDevTools();
+  }
 });
 
 // Listen on the ipcAPI if we should open a window

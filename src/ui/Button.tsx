@@ -4,9 +4,10 @@ interface ButtonProps {
   children: React.ReactNode,
   onClick?: Function,
   fullWidth?: boolean,
+  className?: string,
 }
 
-const Button = ({ children, onClick, fullWidth } : ButtonProps) => {
+const Button = ({ children, onClick, fullWidth, className } : ButtonProps) => {
   return (
     <button 
       className={`
@@ -18,6 +19,7 @@ const Button = ({ children, onClick, fullWidth } : ButtonProps) => {
         border-none
         shadow-md
         ${fullWidth ? 'w-full flex justify-center' : ''}
+        ${className ? className : ''}
       `}
       onClick={() => { onClick && onClick() }}
     >

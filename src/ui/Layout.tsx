@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Settings, ExternalLink } from 'react-feather';
-// import { ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron';
 
 import Button from './Button';
 
@@ -10,9 +10,9 @@ interface LayoutProps {
 }
 
 const openFullWindow = () => {
-  // if (ipcRenderer) {
-  //   ipcRenderer.send('openFull');
-  // }
+  if (ipcRenderer) {
+    ipcRenderer.send('openFull');
+  }
 }
 
 const Layout = ({ children } : LayoutProps) => {

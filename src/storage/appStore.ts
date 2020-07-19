@@ -8,18 +8,18 @@ interface appStoreInterface {
 
 const defaultState : appStoreInterface = {
   apps: [
-    {
-      name: "Twitter",
-      description: 'John Doe',
-      icon: '/icons/color-twitter.svg',
-      token: 'HHPCZGQ3ZZLTRICKIPL36MO53ACFFJDJ',
-    },
-    {
-      name: "Facebook",
-      description: 'John Doe',
-      icon: '/icons/color-facebook.svg',
-      token: 'JDTZJ44CKUEF35VDBWO7BUPSUYE7QI6X',
-    },
+    // {
+    //   name: "Twitter",
+    //   description: 'John Doe',
+    //   icon: '/icons/color-twitter.svg',
+    //   token: 'HHPCZGQ3ZZLTRICKIPL36MO53ACFFJDJ',
+    // },
+    // {
+    //   name: "Facebook",
+    //   description: 'John Doe',
+    //   icon: '/icons/color-facebook.svg',
+    //   token: 'JDTZJ44CKUEF35VDBWO7BUPSUYE7QI6X',
+    // },
   ],
 };
 

@@ -8,6 +8,7 @@ import TextInput from '../../ui/TextInput';
 import OTPItem from './item';
 import AddOTPItem from './addItem';
 import RemainingInfo from './remainingInfo';
+import EmptyItemList from './EmptyItemList';
 import * as Types from '../../types';
 
 import appStore from '../../storage/appStore';
@@ -62,6 +63,9 @@ class HomeComponent extends Component {
               value={query}
             />
           </div>
+          {appStore.apps.length === 0 && (
+            <EmptyItemList />
+          )}
           {showIcons.map((item : Types.App, index) => (
             // @ts-ignore
             <OTPItem key={index} item={item} index={index} />
