@@ -25,6 +25,16 @@ const mb = menubar(menubarConfig);
 
 mb.on('ready', () => {
   console.log('App is ready');
+
+  mb.app.setAsDefaultProtocolClient('otpauth');
+  mb.app.on('open-url', (event, url) => {
+      event.preventDefault();
+      
+      mb.showWindow();
+      mb.window.webContents.once('did-finish-load', () => {
+        mb.window.webContents.send('add-url', url);
+      });
+  });
 });
 
 mb.on('after-create-window', () => {

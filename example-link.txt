@@ -1,0 +1,1 @@
+otpauth://totp/Facebook%3Atest@example.com?secret=asdasdasdasd&issuer=Facebook

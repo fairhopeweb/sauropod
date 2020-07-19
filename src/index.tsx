@@ -10,6 +10,9 @@ import 'noty/lib/themes/nest.css';
 import './index.css';
 import './tailwind.output.css';
 
+// IPC Connection
+import './helpers/protocol';
+
 // Components
 import App from './App';
 

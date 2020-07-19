@@ -53,6 +53,10 @@ class NewService extends Component {
         ...service,
         editMode: match.params.id,
       });
+    } else if (match && match.path === '/fromUrl/:url') {
+      // We are editing a service
+      const url = decodeURIComponent(match.params.url);
+      this.useOTPLink(url);
     } else {
       // We are creating a new service
       this.setState({
@@ -168,25 +172,10 @@ class NewService extends Component {
     });
   }
 
-  async useQr() {
-    const screen = await takeScreenshot();
-
-    // Try to get focus back on window
-    remote.app.focus({
-      steal: true,
-    });
-    remote.getCurrentWindow().focus();
-
-    const data = scanQr(screen);
-
-    if (!data) {
-      notify('Could not find any QR Codes');
-      return;
-    }
-
+  useOTPLink(link) {
     let url;
     try {
-      url = new URL(data);
+      url = new URL(link);
     } catch(e) {
       notify('QR Code is not a valid URL');
       return;
@@ -221,6 +210,25 @@ class NewService extends Component {
       icon: icon,
       hasUsedQr: true,
     });
+  }
+
+  async useQr() {
+    const screen = await takeScreenshot();
+
+    // Try to get focus back on window
+    remote.app.focus({
+      steal: true,
+    });
+    remote.getCurrentWindow().focus();
+
+    const data = scanQr(screen);
+
+    if (!data) {
+      notify('Could not find any QR Codes');
+      return;
+    }
+
+    this.useOTPLink(data);
   }
 
   render() {
