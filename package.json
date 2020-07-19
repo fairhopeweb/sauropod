@@ -43,7 +43,7 @@
     "develop:electron": "concurrently --kill-others \"craco start\" \"electron main.js\"",
     "build:react": "react-scripts build",
     "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
-    "buildIconList": "node scripts/buildIconList.js"
+    "buildIconList": "node cli/buildIconList.js"
   },
   "eslintConfig": {
     "extends": "react-app"
