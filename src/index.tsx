@@ -13,11 +13,6 @@ import './tailwind.output.css';
 // Components
 import App from './App';
 
-const path = require('path');
-const {fixPathForAsarUnpack} = require('electron-util/node');
-const binary = path.join(__dirname, 'screen-capture-permissions');
-console.log('PATH', binary);
-
 ReactDOM.render(
   <App />,
   document.getElementById('root')

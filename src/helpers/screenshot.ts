@@ -18,7 +18,12 @@ if (process.env.OS_PLATFORM) {
 }
 export const isMac = platform === 'darwin';
 
-const getVideo = (source : Electron.DesktopCapturerSource) : Promise<HTMLVideoElement> => {
+interface VideoCreator {
+  videoElement: HTMLVideoElement,
+  stream: MediaStream,
+}
+
+const getVideo = (source : Electron.DesktopCapturerSource) : Promise<VideoCreator> => {
   return new Promise(async resolve => {
     const constraints : MediaStreamConstraints = {
       audio: false,
@@ -45,7 +50,10 @@ const getVideo = (source : Electron.DesktopCapturerSource) : Promise<HTMLVideoEl
 
       videoElement.play();
 
-      resolve(videoElement);
+      resolve({
+        videoElement,
+        stream,
+      });
     };
   });
 };
@@ -85,7 +93,8 @@ export const takeScreenshot = async () => {
   }
 
   const source = await askForScreen();
-  const video = await getVideo(source);
+  const media = await getVideo(source);
+  const video = media.videoElement;
 
   const canvas = document.createElement('canvas');
   canvas.width = video.videoWidth;
@@ -102,7 +111,9 @@ export const takeScreenshot = async () => {
   // Convert to ImageData
   const image = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
+  // Clean up
   video.remove();
+  media.stream.getTracks()[0].stop();
 
   return {
     image,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { view } from '@risingstack/react-easy-state';
 import { Plus, Edit, XSquare, Monitor, Check } from 'react-feather';
 import { withRouter } from 'react-router-dom';
+import { remote } from 'electron';
 
 import Button from '../../ui/Button';
 import Layout from '../../ui/Layout';
@@ -169,6 +170,13 @@ class NewService extends Component {
 
   async useQr() {
     const screen = await takeScreenshot();
+
+    // Try to get focus back on window
+    remote.app.focus({
+      steal: true,
+    });
+    remote.getCurrentWindow().focus();
+
     const data = scanQr(screen);
 
     if (!data) {
@@ -204,11 +212,13 @@ class NewService extends Component {
     // Remove issuer from name
     const name = info.includes(':') ? /(?<=:).*/.exec(info)[0] : info;
 
+    const icon = findIconFor(issuer);
+
     this.setState({
       name: issuer,
       token,
       description: name,
-      icon: findIconFor(issuer),
+      icon: icon,
       hasUsedQr: true,
     });
   }
@@ -231,22 +241,29 @@ class NewService extends Component {
     return (
       <Layout>
         {editMode === false && (
-          <Button fullWidth onClick={() => this.useQr()}>
-            <div className="flex items-center">
-              {hasUsedQr ? (
-                <div className="animate__animated animate__fadeInUp">
-                  <Check />
-                </div>
-              ) : (
-                <>
-                  <Monitor style={{ display: 'inline' }} />
-                  <span className="ml-3">
-                    Use QR Code on my screen
-                  </span>
-                </>
-              )}
-            </div>
-          </Button>
+          <>
+            <Button fullWidth onClick={() => this.useQr()}>
+              <div className="flex items-center">
+                {hasUsedQr ? (
+                  <div className="animate__animated animate__fadeInUp">
+                    <Check />
+                  </div>
+                ) : (
+                  <>
+                    <Monitor style={{ display: 'inline' }} />
+                    <span className="ml-3">
+                      Use QR Code on my screen
+                    </span>
+                  </>
+                )}
+              </div>
+            </Button>
+            <p className="text-gray-500 mt-1 text-xs">
+              If your service is currently showing you the QR Code in another window, Sauropod can automatically scan and use that code.<br />
+              Please note that you may be redirected to your selected window - this is only needed to capture the screen and you can just go back to Sauropod.<br />
+              You will be able to verify the information before we save it.
+            </p>
+          </>
         )}
         <div className="mt-6">
           <TextInput
