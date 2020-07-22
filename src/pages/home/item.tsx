@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Speakeasy from 'speakeasy';
 import { withRouter } from 'react-router-dom';
+import { ipcRenderer } from 'electron';
 
 import * as Types from '../../types';
 // import { remainingTime } from '../../helpers/totp';
@@ -21,6 +22,7 @@ const currentCode = (token : string) => {
 const copyAndClose = (token : string) => {
   const code = currentCode(token);
   navigator.clipboard.writeText(code);
+  ipcRenderer.send('closeMenu');
 }
 
 class OTPItem extends Component<ItemProps> {
@@ -47,7 +49,7 @@ class OTPItem extends Component<ItemProps> {
     const { item } = this.props;
 
     return (
-      <div className="bg-white p-3 mb-6 rounded-md shadow-lg w-full cursor-pointer btn" onClick={() => copyAndClose(item.token)}>
+      <div className="bg-white p-3 mb-6 rounded-md shadow-lg w-full cursor-pointer btn" onClick={() => copyAndClose(item.token)} data-tip="Click the item to copy the code">
         <div className="flex">
           {/* Icon */}
           <img 
@@ -71,7 +73,7 @@ class OTPItem extends Component<ItemProps> {
           </div>
     
           {/* Token */}
-          <div className="text-right text-2xl flex items-center ml-auto mr-3" data-tip="Click the code to copy it">
+          <div className="text-right text-2xl flex items-center ml-auto mr-3">
             {currentCode(item.token)}
           </div>
         </div>

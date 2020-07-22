@@ -66,7 +66,11 @@ mb.on('after-create-window', () => {
 });
 
 // Listen on the ipcAPI if we should open a window
+let openWindows = 0;
 electron.ipcMain.on('openFull', () => {
+  // Only show dock icon when we have a full window opened
+  mb.app.dock.show();
+
   const fullWindow = new electron.BrowserWindow({
     minWidth: 600,
     minHeight: 500,
@@ -78,10 +82,23 @@ electron.ipcMain.on('openFull', () => {
     },
   });
   fullWindow.loadURL(webUrl);
+  openWindows += 1;
+
+  fullWindow.on('close', () => {
+    openWindows -= 1;
+
+    if (openWindows === 0) {
+      mb.app.dock.hide();
+    }
+  });
 });
 
 electron.ipcMain.on('getCurrentUrl', (event) => {
   activeWin().then((info) => {
     event.sender.send('currentUrl', info);
   });
+});
+
+electron.ipcMain.on('closeMenu', () => {
+  mb.hideWindow();
 });

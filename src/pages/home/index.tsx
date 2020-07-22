@@ -45,6 +45,8 @@ class HomeComponent extends Component {
           console.log('Title', title);
           this.setState({
             browserTitle: title,
+          }, () => {
+            ReactTooltip.rebuild();
           });
         }
       });
