@@ -116,6 +116,10 @@ class SettingsPage extends Component {
             text="Show Tooltips"
             name="showTooltips"
           />
+          <Setting
+            text="Suggest services matching my open tab"
+            name="showSuggestions"
+          />
         </div>
 
         <h3 className="text-gray-800 mb-4 ml-2">

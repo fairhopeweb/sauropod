@@ -3,6 +3,7 @@ const { join } = require('path');
 const electron = require('electron');
 const isDev = require('electron-is-dev');
 const contextMenu = require('electron-context-menu');
+const activeWin = require('active-win');
 
 const webUrl = isDev ? 'http://localhost:3000' : `file://${join(__dirname, '../build/index.html')}`;
 
@@ -77,4 +78,10 @@ electron.ipcMain.on('openFull', () => {
     },
   });
   fullWindow.loadURL(webUrl);
+});
+
+electron.ipcMain.on('getCurrentUrl', (event) => {
+  activeWin().then((info) => {
+    event.sender.send('currentUrl', info);
+  });
 });

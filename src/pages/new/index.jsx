@@ -329,14 +329,14 @@ class NewService extends Component {
                 <>
                   <Plus style={{ display: 'inline' }} />
                   <span className="ml-3">
-                    Add service
+                    Save service
                   </span>
                 </>
               ) : (
                 <>
                   <Edit style={{ display: 'inline' }} />
                   <span className="ml-3">
-                    Edit service
+                    Save service
                   </span>
                 </>
               )}

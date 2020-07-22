@@ -2077,6 +2077,16 @@ acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.1.tgz#e35668de0b402f359de515c5482a1ab9f89a69bf"
   integrity sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==
 
+active-win@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/active-win/-/active-win-6.1.0.tgz#9bb3ee5894e91fed8b440f606ed11d0c45d17aaa"
+  integrity sha512-gzcz+V35kRZrbVY43mFaXZfW5DIQ3LOQ/9VKWfQUeCNSgn1h8x7huZZcplP2QLlqnaH+bO6nbVa/TVHAVG1+bw==
+  optionalDependencies:
+    ffi-napi "^2.4.5"
+    ref-napi "^1.4.2"
+    ref-struct-napi "^1.1.0"
+    ref-wchar-napi "^1.0.2"
+
 address@1.1.2, address@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
@@ -4017,7 +4027,7 @@ date-fns@^2.0.1:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.14.0.tgz#359a87a265bb34ef2e38f93ecf63ac453f9bc7ba"
   integrity sha512-1zD+68jhFgDIM0rF05rcwYO8cExdNqxjq4xP1QKM60Q45mnO6zaMWB4tOzrIr4M4GSLntsKeE4c9Bdl2jhL/yw==
 
-debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
+debug@2, debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
@@ -4031,7 +4041,7 @@ debug@=3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@^3.0.0, debug@^3.1.1, debug@^3.2.5:
+debug@^3.0.0, debug@^3.1.0, debug@^3.1.1, debug@^3.2.5:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
@@ -5174,6 +5184,18 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
+ffi-napi@^2.4.5:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/ffi-napi/-/ffi-napi-2.5.0.tgz#77802081e4f3c2160d536781e84e00f8a88961f3"
+  integrity sha512-ninYS+GI4BDFOg29dEJ68uZOcWgCp05teU4Lm40vrnyh+E1fYjKYvTDMYAG+WUD75NNHPTJhNjgVqv5whSgU3w==
+  dependencies:
+    debug "^3.1.0"
+    get-uv-event-loop-napi-h "^1.0.5"
+    node-addon-api "1.6.1"
+    node-gyp-build "^4.2.1"
+    ref-napi "^1.5.2"
+    ref-struct-di "^1.1.0"
+
 figgy-pudding@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
@@ -5536,6 +5558,18 @@ get-stream@^5.0.0, get-stream@^5.1.0:
   integrity sha512-EXr1FOzrzTfGeL0gQdeFEvOMm2mzMOglyiOXSTpPC+iAjAKftbr3jpCMWynogwYnM+eSj9sHGc6wjIcDvYiygw==
   dependencies:
     pump "^3.0.0"
+
+get-symbol-from-current-process-h@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/get-symbol-from-current-process-h/-/get-symbol-from-current-process-h-1.0.2.tgz#510af52eaef873f7028854c3377f47f7bb200265"
+  integrity sha512-syloC6fsCt62ELLrr1VKBM1ggOpMdetX9hTrdW77UQdcApPHLmf7CI7OKcN1c9kYuNxKcDe4iJ4FY9sX3aw2xw==
+
+get-uv-event-loop-napi-h@^1.0.5:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/get-uv-event-loop-napi-h/-/get-uv-event-loop-napi-h-1.0.6.tgz#42b0b06b74c3ed21fbac8e7c72845fdb7a200208"
+  integrity sha512-t5c9VNR84nRoF+eLiz6wFrEp1SE2Acg0wS+Ysa2zF0eROes+LzOfuTaVHxGy8AbS8rq7FHEJzjnCZo1BupwdJg==
+  dependencies:
+    get-symbol-from-current-process-h "^1.0.1"
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
@@ -6031,6 +6065,14 @@ iconv-lite@^0.5.1:
   integrity sha512-kERHXvpSaB4aU3eANwidg79K8FlrN77m8G9V+0vOR3HYaRifrlwMEpT7ZBJqLSEIHnEgJTHcWK82wwLwwKwtag==
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
+
+iconv@2:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/iconv/-/iconv-2.3.5.tgz#5f9b9612f5b15313286748d030c6ff29efdefa33"
+  integrity sha512-U5ajDbtDfadp7pvUMC0F2XbkP5vQn9Xrwa6UptePl+cK8EILxapAt3sXers9B3Gxagk+zVjL2ELKuzQvyqOwug==
+  dependencies:
+    nan "^2.14.0"
+    safer-buffer "^2.1.2"
 
 icss-utils@^4.0.0, icss-utils@^4.1.1:
   version "4.1.1"
@@ -7965,6 +8007,11 @@ nan@^2.12.1:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
 
+nan@^2.14.0:
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.1.tgz#d7be34dfa3105b91494c3147089315eff8874b01"
+  integrity sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvBObDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw==
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -8020,6 +8067,16 @@ no-case@^3.0.3:
     lower-case "^2.0.1"
     tslib "^1.10.0"
 
+node-addon-api@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-1.6.1.tgz#a9881c8dbc6400bac6ddedcb96eccf8051678536"
+  integrity sha512-GcLOYrG5/enbqH4SMsqXt6GQUQGGnDnE3FLDZzXYkCgQHuZV5UDFR+EboeY8kpG0avroyOjpFQ2qLEBosFcRIA==
+
+node-addon-api@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-2.0.2.tgz#432cfa82962ce494b132e9d72a15b29f71ff5d32"
+  integrity sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==
+
 node-emoji@^1.8.1:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.10.0.tgz#8886abd25d9c7bb61802a658523d1f8d2a89b2da"
@@ -8031,6 +8088,11 @@ node-forge@0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.9.0.tgz#d624050edbb44874adca12bb9a52ec63cb782579"
   integrity sha512-7ASaDa3pD+lJ3WvXFsxekJQelBKRpne+GOVbLbtHYdd7pFspyeuJHnWfLplGf3SwKGbfs/aYl5V/JCIaHVUKKQ==
+
+node-gyp-build@^4.2.1:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.2.3.tgz#ce6277f853835f718829efb47db20f3e4d9c4739"
+  integrity sha512-MN6ZpzmfNCRM+3t57PTJHgHyw/h4OWnZ6mR8P5j/uZtqQr46RRuDE/P+g3n0YR/AiYXeWixZZzaip77gdICfRg==
 
 node-int64@^0.4.0:
   version "0.4.0"
@@ -10098,6 +10160,38 @@ reduce-css-calc@^2.1.6:
     css-unit-converter "^1.1.1"
     postcss-value-parser "^3.3.0"
 
+ref-napi@^1.4.2, ref-napi@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/ref-napi/-/ref-napi-1.5.2.tgz#a29f9a0c1aff02f01e023199e4aa8fe7f11f25b9"
+  integrity sha512-hwyNmWpUkt1bDWDW4aiwCoC+SJfJO69UIdjqssNqdaS0sYJpgqzosGg/rLtk69UoQ8drZdI9yyQefM7eEMM3Gw==
+  dependencies:
+    debug "^3.1.0"
+    node-addon-api "^2.0.0"
+    node-gyp-build "^4.2.1"
+
+ref-struct-di@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ref-struct-di/-/ref-struct-di-1.1.1.tgz#5827b1d3b32372058f177547093db1fe1602dc10"
+  integrity sha512-2Xyn/0Qgz89VT+++WP0sTosdm9oeowLP23wRJYhG4BFdMUrLj3jhwHZNEytYNYgtPKLNTP3KJX4HEgBvM1/Y2g==
+  dependencies:
+    debug "^3.1.0"
+
+ref-struct-napi@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ref-struct-napi/-/ref-struct-napi-1.1.1.tgz#272a870a0ccb8244bd06ac851ffafbfc33dcd951"
+  integrity sha512-YgS5/d7+kT5zgtySYI5ieH0hREdv+DabgDvoczxsui0f9VLm0rrDcWEj4DHKehsH+tJnVMsLwuyctWgvdEcVRw==
+  dependencies:
+    debug "2"
+    ref-napi "^1.4.2"
+
+ref-wchar-napi@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ref-wchar-napi/-/ref-wchar-napi-1.0.2.tgz#0028da106953fdf48b2eb944d33f9d1747a6f2a9"
+  integrity sha512-tQDFiY1ifaxEA+HkJ+92YumjlGnQU92nTGn1yMhVRf1jZQkEDxwr9eWgGZQRHaA6AIKBlIXH/Qk8qKIpgKWT7A==
+  dependencies:
+    iconv "2"
+    ref-napi "^1.4.2"
+
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-8.2.0.tgz#e5de7111d655e7ba60c057dbe9ff37c87e65cdec"
@@ -10491,7 +10585,7 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-"safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
+"safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@^2.1.2, safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==

@@ -22,11 +22,12 @@ Features:
 - Support for all HMAC-based codes
 - Cross-platform
 - Completely open-source
-- Not resource-hungry, idling at <1% CPU and 70MB RAM usage ([Info](./branding/cpu-usage.png))
+- Automatically suggests accounts based on your current browser tab
 - Accounts are stored locally so your tokens stay secure
 - Import your accounts from your existing TOTP app
 - Scans QR codes on your screen to add new accounts
 - Open optauth:// Links to directly import new accounts
+- Not resource-hungry, idling at <1% CPU and 70MB RAM usage ([Info](./branding/cpu-usage.png))
 
 ## Download
 
