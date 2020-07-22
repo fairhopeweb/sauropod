@@ -22,9 +22,11 @@ Features:
 - Support for all HMAC-based codes
 - Cross-platform
 - Completely open-source
+- Not resource-hungry, idling at <1% CPU and 70MB RAM usage ([Info](./branding/cpu-usage.png))
 - Accounts are stored locally so your tokens stay secure
 - Import your accounts from your existing TOTP app
 - Scans QR codes on your screen to add new accounts
+- Open optauth:// Links to directly import new accounts
 
 ## Download
 
@@ -86,23 +88,25 @@ $ yarn
 To start Sauropod's development build, run:
 
 ```bash
-$ yarn develop:electron
+$ yarn develop
 ```
 
 ### Packaging
 
 ```bash
-$ npm run build
+$ yarn build:electron --linux # Build for Linux
+$ yarn build:electron --mac # Build for macOS
+$ yarn build:electron --win # Build for Windows
 ```
 
-Deliverables will be available in the `out` folder.
+Deliverables will be available in the `dist` folder.
 
 ### Release (Maintainers only)
 
 Create a new [draft release](https://github.com/getsauropod/sauropod/releases/new) that targets the `release` branch, then:
 
 ```bash
-$ git checkout develop && git pull
+$ git checkout master && git pull
 $ git checkout release
 $ git push
 ```
