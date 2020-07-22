@@ -1,10 +1,12 @@
 directories:
-  output: ./out
+  buildResources: assets
 
 appId: "io.vantezzen.sauropod"
-productName: "Sauropod"
 
-compression: maximum
+files: [
+  "build/**/*",
+  "node_modules/**/*"
+]
 
 mac:
   hardenedRuntime: true

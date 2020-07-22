@@ -20,7 +20,7 @@ export const findIconFor = (name : string) => {
 
 export const getIconPath = (name : string) => {
   // Rest if the icon is a Web URL as we don't need to prefix them
-  if (/^https?:\/\//.test(name)) {
+  if (!/^icons\/.*/.test(name)) {
     return name;
   }
 
@@ -29,6 +29,6 @@ export const getIconPath = (name : string) => {
     return name;
   } else {
     // We need to use the absolute path to the unpacked ASAR assets
-    return path.join(app.getAppPath(), name).replace('app.asar', 'app.asar.unpacked')
+    return path.join(app.getAppPath(), 'build', name).replace('app.asar', 'app.asar.unpacked')
   }
 }

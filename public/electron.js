@@ -2,8 +2,14 @@ const { menubar } = require('menubar');
 const { join } = require('path');
 const electron = require('electron');
 const isDev = require('electron-is-dev');
+const contextMenu = require('electron-context-menu');
 
 const webUrl = isDev ? 'http://localhost:3000' : `file://${join(__dirname, '../build/index.html')}`;
+
+// Setup Context Menu
+contextMenu({
+	showInspectElement: true,
+});
 
 // Setup Menubar
 const menubarConfig = {
@@ -49,15 +55,13 @@ mb.on('ready', () => {
     ]);
 
     menu.popup();
-
-    // mb.tray.popUpContextMenu(menu);
   })
 });
 
 mb.on('after-create-window', () => {
-  // if (isDev) {
+  if (isDev) {
     mb.window.openDevTools();
-  // }
+  }
 });
 
 // Listen on the ipcAPI if we should open a window

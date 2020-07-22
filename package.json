@@ -25,6 +25,7 @@
     "@types/react-transition-group": "^4.4.0",
     "@types/speakeasy": "^2.0.5",
     "animate.css": "^4.1.0",
+    "electron-context-menu": "^2.2.0",
     "electron-is-dev": "^1.2.0",
     "file-saver": "^2.0.2",
     "fs-extra": "^9.0.1",
@@ -76,15 +77,5 @@
     "electron-builder": "^22.7.0",
     "electron-notarize": "^1.0.0",
     "wait-on": "^5.1.0"
-  },
-  "build": {
-    "appId": "io.vantezzen.sauropod",
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
   }
 }
