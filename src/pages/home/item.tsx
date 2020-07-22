@@ -4,8 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { ipcRenderer } from 'electron';
 
 import * as Types from '../../types';
-// import { remainingTime } from '../../helpers/totp';
-
+import notify from '../../helpers/noty';
 
 interface ItemProps {
   item: Types.App,
@@ -23,6 +22,9 @@ const copyAndClose = (token : string) => {
   const code = currentCode(token);
   navigator.clipboard.writeText(code);
   ipcRenderer.send('closeMenu');
+
+  // We might also be in a full window so also notify the user
+  notify('Copied code');
 }
 
 class OTPItem extends Component<ItemProps> {
