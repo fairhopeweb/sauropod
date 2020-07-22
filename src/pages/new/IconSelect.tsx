@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { view } from '@risingstack/react-easy-state';
 
-import { getIcons } from '../../helpers/icons';
+import { getIcons, getIconPath } from '../../helpers/icons';
 
 interface IconSelectState {
   icons: Array<string>,
@@ -49,7 +49,7 @@ class IconSelect extends Component<IconSelectProps> {
             {this.state.icons.map(icon => (
               <div className="flex justify-center" onClick={() => onChange(icon)} key={icon}>
                 <img
-                  src={icon}
+                  src={getIconPath(icon)}
                   style={{
                     width: 50,
                     height: 50,

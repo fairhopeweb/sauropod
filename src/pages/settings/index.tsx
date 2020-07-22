@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { remote } from 'electron';
 import { view } from '@risingstack/react-easy-state';
 import { saveAs } from 'file-saver';
 import { Check } from 'react-feather';
@@ -146,7 +147,7 @@ class SettingsPage extends Component {
         </div>
         <p className="text-gray-600 mt-2">
           Sauropod supports importing configurations from andOTP.<br />
-          You can also export your Sauropod configuration and import it into andOPT.<br />
+          You can also export your Sauropod configuration and import it into andOTP.<br />
           Be careful: Exported files are unencrypted.
         </p>
 
@@ -154,6 +155,16 @@ class SettingsPage extends Component {
         <input type="file" className="hidden" ref={(item) => {
           this.fileInput = item;
         }} onChange={() => this.import()} />
+
+        <h3 className="text-gray-800 my-4 ml-2">
+          Quit
+        </h3>
+        <Button fullWidth onClick={() => remote.app.quit()}>
+          Quit Sauropod
+        </Button>
+        <p className="text-gray-600 mt-2">
+          You can also quit Sauropod by double-clicking on the tray icon and choosing "Quit Sauropod".
+        </p>
 
       </Layout>
     );

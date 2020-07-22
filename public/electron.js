@@ -1,9 +1,9 @@
 const { menubar } = require('menubar');
 const { join } = require('path');
 const electron = require('electron');
+const isDev = require('electron-is-dev');
 
-const isDev = process.NODE_ENV !== 'production';
-const webUrl = !isDev ? `file://${__dirname}/index.html` : 'http://localhost:3000';
+const webUrl = isDev ? 'http://localhost:3000' : `file://${join(__dirname, '../build/index.html')}`;
 
 // Setup Menubar
 const menubarConfig = {
@@ -15,10 +15,10 @@ const menubarConfig = {
       nodeIntegration: true,
     },
   },
-  icon: join(__dirname, 'icons', 'MenuBarIcon.png'),
+  icon: join(__dirname, 'MenuBarIcon.png'),
   tooltip: 'Sauropod',
   index: webUrl,
-  showDockIcon: process.NODE_ENV !== 'production',
+  showDockIcon: isDev,
 }
 
 const mb = menubar(menubarConfig);
@@ -26,6 +26,7 @@ const mb = menubar(menubarConfig);
 mb.on('ready', () => {
   console.log('App is ready');
 
+  // Setup protocol action for optauth: protocol
   mb.app.setAsDefaultProtocolClient('otpauth');
   mb.app.on('open-url', (event, url) => {
       event.preventDefault();
@@ -35,12 +36,28 @@ mb.on('ready', () => {
         mb.window.webContents.send('add-url', url);
       });
   });
+
+  // Setup right-click action
+  mb.tray.on('double-click', () => {
+    const menu = electron.Menu.buildFromTemplate([
+      {
+        label: 'Quit Sauropod',
+        click() {
+          mb.app.quit();
+        },
+      },
+    ]);
+
+    menu.popup();
+
+    // mb.tray.popUpContextMenu(menu);
+  })
 });
 
 mb.on('after-create-window', () => {
-  if (isDev) {
+  // if (isDev) {
     mb.window.openDevTools();
-  }
+  // }
 });
 
 // Listen on the ipcAPI if we should open a window

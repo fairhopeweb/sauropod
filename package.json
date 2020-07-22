@@ -1,5 +1,12 @@
 {
-  "name": "sauropod",
+  "name": "Sauropod",
+  "description": "Sauropod is a TOTP application for your menubar.",
+  "author": {
+    "name": "vantezzen",
+    "url": "https://vantezzen.io"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +25,7 @@
     "@types/react-transition-group": "^4.4.0",
     "@types/speakeasy": "^2.0.5",
     "animate.css": "^4.1.0",
-    "electron": "^9.1.0",
+    "electron-is-dev": "^1.2.0",
     "file-saver": "^2.0.2",
     "fs-extra": "^9.0.1",
     "js-search": "^2.0.0",
@@ -39,11 +46,14 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "develop:react": "react-scripts start",
-    "develop:electron": "concurrently --kill-others \"craco start\" \"electron main.js\"",
-    "build:react": "react-scripts build",
+    "develop": "concurrently \"BROWSER=none craco start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build:react": "craco build",
     "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
-    "buildIconList": "node cli/buildIconList.js"
+    "build:iconList": "node cli/buildIconList.js",
+    "build:electron": "yarn build:react && electron-builder",
+    "install-deps": "electron-builder install-app-deps",
+    "postinstall": "yarn install-deps",
+    "package:electron": "npx electron-builder --dir"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -61,6 +71,20 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^5.2.0",
+    "electron": "^9.1.1",
+    "electron-builder": "^22.7.0",
+    "electron-notarize": "^1.0.0",
+    "wait-on": "^5.1.0"
+  },
+  "build": {
+    "appId": "io.vantezzen.sauropod",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }

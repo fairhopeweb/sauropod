@@ -12,7 +12,7 @@ import IconSelect from './IconSelect';
 import appStore from '../../storage/appStore';
 
 import notify from '../../helpers/noty';
-import { findIconFor } from '../../helpers/icons';
+import { findIconFor, getIconPath } from '../../helpers/icons';
 import { takeScreenshot } from '../../helpers/screenshot';
 import scanQr from '../../helpers/qr';
 
@@ -20,7 +20,7 @@ class NewService extends Component {
   state = {
     name: '',
     description: '',
-    icon: '/icons/0_unknown.svg',
+    icon: getIconPath('/icons/0_unknown.svg'),
     token: '',
     withError: [],
     iconMode: 'buildin',

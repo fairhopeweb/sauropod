@@ -1,0 +1,23 @@
+image: Visual Studio 2017
+branches:
+  only:
+    - release
+
+platform:
+  - x64
+
+cache:
+  - node_modules
+  - '%USERPROFILE%\.electron'
+
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - ps: Install-Product node 10 x64
+  - yarn
+
+build_script:
+  - yarn build:electron --win --publish always -c.publish.provider=github -c.publish.owner=getsauropod -c.publish.repo=sauropod
+
+test: off

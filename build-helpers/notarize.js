@@ -1,0 +1,18 @@
+// const { notarize } = require("electron-notarize");
+
+exports.default = async function notarizing(context) {
+  // const { electronPlatformName, appOutDir } = context;
+  // if (electronPlatformName !== "darwin" || process.env.TRAVIS_BRANCH !== 'release') {
+  //   return;
+  // }
+
+  // const appName = context.packager.appInfo.productFilename;
+
+  // return await notarize({
+  //   appBundleId: "io.vantezzen.sauropod",
+  //   appPath: `${appOutDir}/${appName}.app`,
+  //   ascProvider: "B6J9X9DWFL",
+  //   appleId: process.env.APPLEID,
+  //   appleIdPassword: process.env.APPLEID_PASSWORD
+  // });
+};

@@ -1,0 +1,58 @@
+directories:
+  output: ./out
+
+appId: "io.vantezzen.sauropod"
+productName: "Sauropod"
+
+compression: maximum
+
+mac:
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  category: public.app-category.productivity
+  icon: ./branding/logo-1024.png
+
+afterSign: ./build-helpers/notarize.js
+
+dmg:
+  background: ./build-helpers/dmgInstaller.tiff
+  icon: ./branding/logo-1024.png
+  iconSize: 1024
+  contents:
+    [
+      { x: 380, y: 240, type: link, path: /Applications },
+      { x: 122, y: 240, type: file },
+    ]
+
+win:
+  icon: ./branding/logo-1024.png
+  target:
+    - target: nsis
+      arch: [x64, ia32]
+    - target: portable
+      arch: [x64, ia32]
+  publisherName: 'vantezzen.io'
+
+linux:
+  icon: ./branding/logo-1024.png
+  category: Utility;
+  executableName: sauropod
+  synopsis: "Your TOTP Tokens in the menubar."
+  description: "Sauropod is a TOTP application for your menubar. It is compatible with your HMAC based Time Based One Time Passwords as used by services by Google, Facebook, Twitter and many more."
+  target:
+    - target: AppImage
+    - target: deb
+    - target: tar.gz
+    - target: rpm
+
+nsis:
+  perMachine: false
+  oneClick: true
+
+protocols:
+  name: OTPAuth
+  schemes: [otpauth]
+
+asarUnpack:
+  - ./node_modules/mac-screen-capture-permissions
+  - ./build/icons

@@ -5,6 +5,8 @@ import { ipcRenderer } from 'electron';
 
 import Button from './Button';
 
+import { getIconPath } from '../helpers/icons';
+
 interface LayoutProps {
   children: React.ReactNode,
 }
@@ -23,7 +25,7 @@ const Layout = ({ children } : LayoutProps) => {
         <h1 className="flex items-center text-2xl font-bold">
           <Link to="/" className="flex items-center">
             <img 
-              src='/icons/0_unknown.svg'
+              src={getIconPath('/icons/0_unknown.svg')}
               style={{
                 width: 45,
                 height: 45,
