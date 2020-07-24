@@ -19,11 +19,7 @@ cache:
     - $HOME/.cache/electron-builder
 
 script:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      travis_wait 100 yarn build:electron --linux --publish always
-    else
-      travis_wait 100 yarn build:electron --mac --publish always
-    fi
+  - travis_wait 100 yarn build:electron --publish always
 before_cache:
   - rm -rf $HOME/.cache/electron-builder
 
