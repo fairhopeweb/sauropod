@@ -9,10 +9,18 @@ matrix:
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     - os: linux
-      services: docker
-      language: generic
+      dist: xenial
+      addons:
+        apt:
+          packages:
+            - libx11-dev
+            - libxext-dev
+            - libxss-dev
+            - libxkbfile-dev
+            - rpm
 
 cache:
+  yarn: true
   directories:
     - node_modules
     - $HOME/.cache/electron
