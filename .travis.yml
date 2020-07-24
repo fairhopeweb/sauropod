@@ -20,9 +20,9 @@ cache:
 
 script:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      travis_retry travis_wait 100 yarn build:electron --linux --publish always -c.publish.provider=github -c.publish.owner=getsauropod -c.publish.repo=sauropod
+      travis_wait 100 yarn build:electron --linux --publish always
     else
-      travis_retry travis_wait 100 yarn build:electron --mac --publish always -c.publish.provider=github -c.publish.owner=getsauropod -c.publish.repo=sauropod
+      travis_wait 100 yarn build:electron --mac --publish always
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder

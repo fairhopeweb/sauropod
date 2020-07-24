@@ -58,3 +58,6 @@ protocols:
 asarUnpack:
   - ./node_modules/mac-screen-capture-permissions
   - ./build/icons
+
+publish:
+  - github
