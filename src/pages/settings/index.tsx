@@ -3,6 +3,7 @@ import { remote } from 'electron';
 import { view } from '@risingstack/react-easy-state';
 import { saveAs } from 'file-saver';
 import { Check } from 'react-feather';
+import AutoLaunch from 'auto-launch';
 
 import * as Types from '../../types';
 
@@ -14,6 +15,18 @@ import appStore from '../../storage/appStore';
 
 import { findIconFor } from '../../helpers/icons';
 import notify from '../../helpers/noty';
+
+let { platform } : any = process;
+if (process.env.OS_PLATFORM) {
+  platform = process.env.OS_PLATFORM;
+}
+const isMac = platform === 'darwin';
+
+const executablePath = isMac ? remote.process.execPath : process.execPath;
+const autoLauncher = new AutoLaunch({
+  name: 'Sauropod',
+  path: executablePath,
+});
 
 interface AppExport {
   secret: string,
@@ -101,6 +114,18 @@ class SettingsPage extends Component {
     });
   }
 
+  updateAutoLaunch(enable : boolean) {
+    try {
+      if (enable) {
+        autoLauncher.enable();
+      } else {
+        autoLauncher.disable();
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+
   render() {
     return (
       <Layout>
@@ -119,6 +144,12 @@ class SettingsPage extends Component {
           <Setting
             text="Suggest services matching my open tab"
             name="showSuggestions"
+          />
+          <p className="text-gray-500 mb-6 text-sm">Suggesting services may require you to give Sauropod "Accessbility" access. This is needed so we can get name of your current browser tab.</p>
+          <Setting
+            text="Automatically launch Sauropod on login"
+            name="autoLaunch"
+            onChange={(v : boolean) => this.updateAutoLaunch(v)}
           />
         </div>
 
