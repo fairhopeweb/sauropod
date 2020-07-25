@@ -20,7 +20,8 @@ matrix:
             - rpm
 
 language: node_js
-node_js: "12"
+node_js:
+  - 12
 
 cache:
   directories:
