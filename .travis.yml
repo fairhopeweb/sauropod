@@ -3,31 +3,28 @@ matrix:
     - os: osx
       osx_image: xcode10.2
       language: node_js
-      node_js: "10"
+      node_js: "12"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     - os: linux
+      language: generic
+      sudo: required
       dist: xenial
-      addons:
-        apt:
-          packages:
-            - libx11-dev
-            - libxext-dev
-            - libxss-dev
-            - libxkbfile-dev
-            - rpm
+      language: node_js
+      node_js: "12"
 
 cache:
-  yarn: true
   directories:
     - node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
+install:
+  - yarn
 script:
-  - travis_wait 100 yarn build:electron --publish always
+  - yarn build:electron --publish always
 before_cache:
   - rm -rf $HOME/.cache/electron-builder
 
