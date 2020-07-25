@@ -27,6 +27,7 @@ cache:
     - $HOME/.cache/electron-builder
 
 install:
+  - nvm install
   - nvm use
   - yarn
 script:
