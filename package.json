@@ -3,12 +3,13 @@
   "description": "Sauropod is a TOTP application for your menubar.",
   "author": {
     "name": "vantezzen",
-    "url": "https://vantezzen.io"
+    "url": "https://vantezzen.io",
+    "email": "sauropod-package@vantezzen.io"
   },
   "homepage": "./",
   "repository": "https://github.com/getsauropod/sauropod",
   "main": "public/electron.js",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^5.6.4",
