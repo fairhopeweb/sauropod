@@ -1,16 +1,24 @@
 matrix:
   include:
     - os: osx
-      osx_image: xcode10.2
-      language: node_js
-      node_js: "10"
+      osx_image: xcode12
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     - os: linux
-      services: docker
       language: generic
+      dist: xenial
+      addons:
+        apt:
+          packages:
+            - libx11-dev
+            - libxext-dev
+            - libxss-dev
+            - libxkbfile-dev
+            - rpm
+
+language: node_js
 
 cache:
   directories:
@@ -18,12 +26,12 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
+install:
+  - nvm install
+  - nvm use
+  - yarn
 script:
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      travis_retry travis_wait 100 yarn build:electron --linux --publish always -c.publish.provider=github -c.publish.owner=getsauropod -c.publish.repo=sauropod
-    else
-      travis_retry travis_wait 100 yarn build:electron --mac --publish always -c.publish.provider=github -c.publish.owner=getsauropod -c.publish.repo=sauropod
-    fi
+  - yarn build:electron --publish always
 before_cache:
   - rm -rf $HOME/.cache/electron-builder
 
