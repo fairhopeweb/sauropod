@@ -11,6 +11,13 @@
   Your TOTP Tokens in the menubar 
 </h2>
 
+<p align="center">
+  <img src="https://travis-ci.org/getsauropod/sauropod.svg?branch=release" alt="Travis Build Status">
+  <img src="https://ci.appveyor.com/api/projects/status/nmeky2blknvbr77m?svg=true" alt="AppVeyor Build Status">
+  <img src="https://img.shields.io/github/license/getsauropod/sauropod" alt="License: MIT">
+  <img src="https://img.shields.io/github/package-json/v/getsauropod/sauropod" alt="Version Information">
+</p>
+
 Sauropod is a TOTP application for your menubar. It is compatible with your HMAC based Time Based One Time Passwords as used by services by Google, Facebook, Twitter and many more.
 
 <p align="center">
