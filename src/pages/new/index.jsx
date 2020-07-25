@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { view } from '@risingstack/react-easy-state';
 import { Plus, Edit, XSquare, Monitor, Check } from 'react-feather';
 import { withRouter } from 'react-router-dom';
-import { remote } from 'electron';
+import { remote, ipcRenderer } from 'electron';
 
 import Button from '../../ui/Button';
 import Layout from '../../ui/Layout';
@@ -144,6 +144,10 @@ class NewService extends Component {
         token,
       };
     }
+
+    // Reload all other windows to propagate this change
+    ipcRenderer.send('reloadAll');
+
     this.props.history.push('/');
   }
 
