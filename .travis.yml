@@ -8,7 +8,6 @@ matrix:
 
     - os: linux
       language: generic
-      sudo: required
       dist: xenial
       addons:
         apt:
@@ -20,8 +19,6 @@ matrix:
             - rpm
 
 language: node_js
-node_js:
-  - 12
 
 cache:
   directories:
