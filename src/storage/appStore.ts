@@ -2,8 +2,9 @@ import { store } from '@risingstack/react-easy-state';
 
 import * as Types from '../types';
 
-interface appStoreInterface {
+export interface appStoreInterface {
   apps: Types.AppArray,
+  [name: string]: any,
 };
 
 const defaultState : appStoreInterface = {

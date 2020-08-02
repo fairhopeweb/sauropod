@@ -116,12 +116,10 @@ electron.ipcMain.on('closeMenu', () => {
 
 // Reload all pages except the current one
 // This is needed to propagate changes
-electron.ipcMain.on('reloadAll', (event) => {
-  console.log(`Reloading ${currentWindows.length - 1} windows`);
-
+electron.ipcMain.on('reloadData', (event) => {
   for(const window of currentWindows) {
     if (window && window.id !== event.frameId) {
-      window.webContents.reload();
+      window.webContents.send('reloadData');
     }
   }
 });

@@ -116,7 +116,7 @@ class NewService extends Component {
     return hasErrors;
   }
 
-  saveItem() {
+  async saveItem() {
     const {
       name,
       description,
@@ -146,7 +146,8 @@ class NewService extends Component {
     }
 
     // Reload all other windows to propagate this change
-    ipcRenderer.send('reloadAll');
+    await window.sauropod.services.persistence.saveData();
+    ipcRenderer.send('reloadData');
 
     this.props.history.push('/');
   }

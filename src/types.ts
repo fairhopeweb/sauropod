@@ -6,3 +6,14 @@ export interface App {
 }
 
 export interface AppArray extends Array<App> {};
+
+export interface SauropodWindow {
+  services: {
+    persistence?: {
+      saveData: Function,
+      loadData: Function,
+    },
+    [key: string]: any,
+  },
+  loaded: boolean,
+}
