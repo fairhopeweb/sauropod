@@ -152,7 +152,7 @@ class NewService extends Component {
     this.props.history.push('/');
   }
 
-  removeService() {
+  async removeService() {
     // eslint-disable-next-line no-restricted-globals
     const confirmation = confirm('Are you sure you want to delete this service? This action is permanent and can\'t be reversed.');
 
@@ -161,6 +161,10 @@ class NewService extends Component {
       appStore.apps.splice(editMode, 1);
 
       notify('Successfully removed the service');
+
+      await window.sauropod.services.persistence.saveData();
+      ipcRenderer.send('reloadData');
+
       this.props.history.push('/');
     }
   }
