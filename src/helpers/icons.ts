@@ -20,7 +20,7 @@ export const findIconFor = (name : string) => {
 
 export const getIconPath = (name : string) => {
   // Rest if the icon is a Web URL as we don't need to prefix them
-  if (!/^icons\/.*/.test(name)) {
+  if (!/^\/icons\/.*/.test(name)) {
     return name;
   }
 

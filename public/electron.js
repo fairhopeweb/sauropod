@@ -7,6 +7,8 @@ const activeWin = require('active-win');
 
 const webUrl = isDev ? 'http://localhost:3000' : `file://${join(__dirname, '../build/index.html')}`;
 
+const currentWindows = [];
+
 // Setup Context Menu
 contextMenu({
 	showInspectElement: true,
@@ -60,6 +62,8 @@ mb.on('ready', () => {
 });
 
 mb.on('after-create-window', () => {
+  currentWindows.push(mb.window);
+
   if (isDev) {
     mb.window.openDevTools();
   }
@@ -82,10 +86,17 @@ electron.ipcMain.on('openFull', () => {
     },
   });
   fullWindow.loadURL(webUrl);
+
   openWindows += 1;
+  currentWindows.push(fullWindow);
 
   fullWindow.on('close', () => {
     openWindows -= 1;
+
+    const windowIndex = currentWindows.findIndex(e => e === fullWindow);
+    if (windowIndex) {
+      delete currentWindows[windowIndex];
+    }
 
     if (openWindows === 0) {
       mb.app.dock.hide();
@@ -101,4 +112,14 @@ electron.ipcMain.on('getCurrentUrl', (event) => {
 
 electron.ipcMain.on('closeMenu', () => {
   mb.hideWindow();
+});
+
+// Reload all pages except the current one
+// This is needed to propagate changes
+electron.ipcMain.on('reloadData', (event) => {
+  for(const window of currentWindows) {
+    if (window && window.id !== event.frameId) {
+      window.webContents.send('reloadData');
+    }
+  }
 });

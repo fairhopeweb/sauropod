@@ -65,7 +65,10 @@ class OTPItem extends Component<ItemProps> {
           />
           
           {/* Information */}
-          <div className="flex flex-col" data-tip="Click the name to edit the item" onClick={() => this.props.history.push(`/edit/${this.props.index}`)}>
+          <div className="flex flex-col" data-tip="Click the name to edit the item" onClick={(event) => {
+            event.stopPropagation();
+            this.props.history.push(`/edit/${this.props.index}`);
+          }}>
             <div>
               {item.name}
             </div>
