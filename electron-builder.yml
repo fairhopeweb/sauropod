@@ -13,6 +13,8 @@ mac:
   gatekeeperAssess: false
   category: public.app-category.productivity
   icon: ./branding/logo-1024.png
+  entitlements: "./build-helpers/entitlements.mas.plist"
+  entitlementsInherit: "./build-helpers/entitlements.mas.inherit.plist"
 
 afterSign: ./build-helpers/notarize.js
 
