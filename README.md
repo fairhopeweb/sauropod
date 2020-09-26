@@ -8,7 +8,7 @@
   Sauropod
 </h1>
 <h2 align="center">
-  Your TOTP Tokens in the menubar 
+  All Your TOTP Codes On Your Desktop 
 </h2>
 
 <p align="center">
@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/github/package-json/v/getsauropod/sauropod" alt="Version Information">
 </p>
 
-Sauropod is a TOTP application for your menubar. It is compatible with your HMAC based Time Based One Time Passwords as used by services by Google, Facebook, Twitter and many more.
+Sauropod is a Time-based One-Time Passwords (TOTP) application for your desktop. It is compatible with your HMAC-based OTP as used by services like Google, Facebook, Twitter and many more.
 
 <p align="center">
     <img src="./branding/app.png" alt="Sauropod Screenshot" width="500"/>
